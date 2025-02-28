@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Dating App</a>
+        <a class="navbar-brand" routerLink="/">Dating App</a>
         @if (accountService.currentUser()) {
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-                <a routerLink="/members" class="nav-link">Matches</a>
+                <a routerLink="/members" routerLinkActive="active" class="nav-link">Matches</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Listes</a>
+                <a routerLink="/lists" routerLinkActive="active" class="nav-link">Listes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Messages</a>
+                <a routerLink="/messages" routerLinkActive="active" class="nav-link">Messages</a>
             </li>
         </ul>
         }
@@ -25,7 +25,7 @@
         </div>
         }
         @if (!accountService.currentUser()) {
-        <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex" role="search" auto="off">
+        <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex" role="search" autocomplete="off">
             <input name="username" [(ngModel)]="model.username" class="form-control me-2" placeholder="Username">
             <input name="password" [(ngModel)]="model.password" class="form-control me-2" placeholder="Password"
                 type="password">
