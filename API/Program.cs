@@ -2,6 +2,7 @@ using System.Text;
 using API.Data;
 using API.Extensions;
 using API.Interfaces;
+using API.Middleware;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,12 @@ var _audience = builder.Configuration["Jwt:Audience"];
 
 // Add services to the container.
 builder.Services.AddApplicationsServices(builder.Configuration);
-builder.Services.AddIdentityServices(builder.Configuration);    
+builder.Services.AddIdentityServices(builder.Configuration);
 
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors(x =>
     x.AllowAnyHeader()
         .AllowAnyMethod()
